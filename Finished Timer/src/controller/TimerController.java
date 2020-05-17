@@ -59,6 +59,7 @@ public class TimerController {
 		ctp.Remove.setOpacity(100);
 		ctp.Start.setOpacity(100);
 		ctp.Stop.setOpacity(100);
+		
 	}
 	
 	
@@ -237,6 +238,13 @@ public class TimerController {
 	private class ExitHandler implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			//Literally just exits the program.
+			if(timerStarted) {
+				try {
+					Runtime.getRuntime().exec("../Prototype Timer/Lock.bat");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			Platform.exit();
 		}
 	}

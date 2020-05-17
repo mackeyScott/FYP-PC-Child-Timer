@@ -1,6 +1,10 @@
 package main;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+
+import java.io.IOException;
+
 import controller.TimerController;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -30,6 +34,15 @@ public class ApplicationLoader extends Application{
 		scene = new Scene(view);
 		stage.setScene(scene);
 		stage.show();
+		stage.setOnCloseRequest(evt -> {
+	        evt.consume();
+			try {
+				Runtime.getRuntime().exec("../Prototype Timer/Lock.bat");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Platform.exit();
+	    });
 		
 	}
 	public static void main(String[] args) {
